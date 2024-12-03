@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.thymeleaf.org/"
+        th:replace="~{layout/index :: dynamic(~{::main})}"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <title>E-commerce - product list</title>
+</head>
+<body>
+<main>
+    <div class="row">
+        <div th:each="p : ${productList}" class="col-sm-4 d-flex justify-content-center mb-4">
+            <div class="card" style="width: 18rem;">
+                <a th:href="@{|/product/detail/${p.id}|}" ></a>
+                <img
+                        th:src="@{|/assets/images/${p.image}|}"
+                        class="card-img-top"
+                        alt="item image"
+                />
+                <div class="card-body text-center">
+                      <a th:href="@{|/product/detail/${p.id}|}" ></a>
+                    <h5 class="card-title" th:text="${p.name}"></h5>
+                    <p class="card-text" th:text="${p.price}"></p>
+                    
+                    <button th:attr="ng-click=@{|cart.add(${p.id})|}" class="btn btn-primary">Thêm giỏ hàng</button>
+                    <button ><a th:href="@{|/product/detail/${p.id}|}" >Xem chi tiết</a> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

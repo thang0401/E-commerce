@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.thymeleaf.org/"
+  th:replace="~{layout/index :: dynamic(~{::main})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>E-commerce - Product detail</title>
+  </head>
+  <body>
+    <main th:object="${product}" class="poly-item-detail">
+      <div class="row">
+        <div class="panel panel-primary" style="width: 300px;">
+            <img style="height: 400px",
+            th:src="@{|/assets/images/*{image}|}"
+            class="card-img-top"
+            alt="item image"
+    />
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <ul>
+              <li th:text="*{name}"></li>
+              <li th:text="*{price}"></li>
+              <li th:text="*{createDate}"></li>
+              <li th:text="*{category.name}"></li>
+            </ul>
+            <div class="panel-footer text-right">
+              <button class="btn btn-success">
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading text-center bg-primary text-white fw-bold py-2">
+              HÀNG CÙNG LOẠI
+            </div>
+            <div class="panel-body p-3">
+              <ul class="list-group">
+                <li
+                        th:each="p : ${product.category.products}"
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <a
+                          th:href="@{|/product/detail/${p.id}|}"
+                          th:text="${p.name}"
+                          class="text-decoration-none text-primary"
+                  ></a>
+                  <span class="badge bg-primary rounded-pill">View</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>

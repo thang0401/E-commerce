@@ -1,0 +1,6 @@
+
+  <div class="list-group">
+    <a th:each="c : ${category}" th:href="@{|/product/list?cid=${c.id}|}" class="list-group-item">
+        [[${c.name}]]
+    </a>
+</div>
