@@ -13,4 +13,8 @@ public class CartController {
     public String GetDetail(){
         return "cart/view";
     }
+    @GetMapping("/cart/view1")
+    public String GetDetail(){
+        return "cart/view";
+    }
 }
